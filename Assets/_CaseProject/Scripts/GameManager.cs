@@ -47,6 +47,10 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+
+#if UNITY_STANDALONE_WIN
+        Screen.SetResolution(540, 960, false);
+#endif
     }
 
     private void Start()

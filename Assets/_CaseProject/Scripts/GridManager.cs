@@ -87,12 +87,10 @@ public class GridManager : MonoBehaviour
 
         for (int x = 0; x < width; x++)
         {
-            // Alt Duvarlar sadece DOWN kapýlarýna tepki verir
             Vector3 bottomCellPos = GetCellWorldPosition(x, 0, startPosition);
             Vector3 bottomWallPos = bottomCellPos + new Vector3(0, wallYOffset, -offset);
             CreateWallSegment(bottomWallPos, Quaternion.identity, new Vector2Int(x, 0), Direction.Down);
 
-            // Üst Duvarlar sadece UP kapýlarýna tepki verir
             Vector3 topCellPos = GetCellWorldPosition(x, height - 1, startPosition);
             Vector3 topWallPos = topCellPos + new Vector3(0, wallYOffset, offset);
             CreateWallSegment(topWallPos, Quaternion.identity, new Vector2Int(x, height - 1), Direction.Up);
@@ -100,12 +98,10 @@ public class GridManager : MonoBehaviour
 
         for (int y = 0; y < height; y++)
         {
-            // Sol Duvarlar sadece LEFT kapýlarýna tepki verir
             Vector3 leftCellPos = GetCellWorldPosition(0, y, startPosition);
             Vector3 leftWallPos = leftCellPos + new Vector3(-offset, wallYOffset, 0);
             CreateWallSegment(leftWallPos, Quaternion.Euler(0, 90, 0), new Vector2Int(0, y), Direction.Left);
 
-            // Sað Duvarlar sadece RIGHT kapýlarýna tepki verir
             Vector3 rightCellPos = GetCellWorldPosition(width - 1, y, startPosition);
             Vector3 rightWallPos = rightCellPos + new Vector3(offset, wallYOffset, 0);
             CreateWallSegment(rightWallPos, Quaternion.Euler(0, 90, 0), new Vector2Int(width - 1, y), Direction.Right);
@@ -121,7 +117,6 @@ public class GridManager : MonoBehaviour
             CellNode adjCell = _gridMap[adjacentPos.x, adjacentPos.y];
             if (adjCell != null && adjCell.GateInfo != null)
             {
-                // DENETÇÝ NEÞTERÝ: Sadece kapýnýn yönü, inþa ettiðimiz duvarýn yönüyle eþleþiyorsa boya!
                 if (adjCell.GateInfo.Value.ExitDirection == requiredDirection)
                 {
                     MeshRenderer wallRend = wallObj.GetComponentInChildren<MeshRenderer>();
