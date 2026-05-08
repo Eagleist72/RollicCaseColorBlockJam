@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2087f4d5c1cbca4b85180cb8f2ff793, type: 3}
+  m_Name: Level_3
+  m_EditorClassIdentifier: 
+  GridSize: {x: 5, y: 5}
+  BlockedCellPositions: []
+  ExitGates:
+  - TargetColor: 0
+    ExitDirection: 1
+    WallIndex: 3
+  - TargetColor: 0
+    ExitDirection: 1
+    WallIndex: 4
+  - TargetColor: 1
+    ExitDirection: 1
+    WallIndex: 0
+  - TargetColor: 2
+    ExitDirection: 2
+    WallIndex: 3
+  - TargetColor: 4
+    ExitDirection: 0
+    WallIndex: 0
+  - TargetColor: 3
+    ExitDirection: 3
+    WallIndex: 2
+  InitialBlocks:
+  - RootPosition: {x: 2, y: 2}
+    ShapeType: 3
+    ColorType: 0
+  - RootPosition: {x: 1, y: 1}
+    ShapeType: 6
+    ColorType: 2
+  - RootPosition: {x: 0, y: 1}
+    ShapeType: 2
+    ColorType: 4
+  - RootPosition: {x: 0, y: 4}
+    ShapeType: 0
+    ColorType: 3
+  - RootPosition: {x: 4, y: 3}
+    ShapeType: 2
+    ColorType: 1
+  EditableTimer: 45
