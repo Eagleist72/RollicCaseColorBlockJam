@@ -160,12 +160,6 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentState != GameState.Playing) return;
 
-        if (blockManager == null || sortingManager == null)
-        {
-            Debug.LogError("[GameManager] Manager references are missing!");
-            return;
-        }
-
         Debug.Log($"<color=yellow>[WIN CHECK]</color> Blocks on Field: {blockManager.ActiveBlockCount}");
 
         if (blockManager.ActiveBlockCount == 0)

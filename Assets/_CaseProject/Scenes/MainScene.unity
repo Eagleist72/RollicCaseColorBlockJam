@@ -164,6 +164,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b1042339a6c2227479d86486245dd243, type: 2}
   - {fileID: 11400000, guid: 8f95bd36de82be540ab256c7be35e8e9, type: 2}
   - {fileID: 11400000, guid: 423edff7a079e764187623b011e3720c, type: 2}
+  - {fileID: 0}
   currentLevelIndex: 0
 --- !u!4 &55447680
 Transform:
@@ -1396,7 +1397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb7647e26ac0ec48bf49b0e238526f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelDataToPreview: {fileID: 11400000, guid: 8f95bd36de82be540ab256c7be35e8e9, type: 2}
+  levelDataToPreview: {fileID: 11400000, guid: 423edff7a079e764187623b011e3720c, type: 2}
   cellSize: 3
   gridOrigin: {x: 0, y: 0, z: 0}
 --- !u!4 &806014557
