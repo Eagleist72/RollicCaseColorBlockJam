@@ -9,10 +9,10 @@ using UnityEngine;
 [ExecuteAlways]
 public class LevelVisualizer : MonoBehaviour
 {
-    [Header("Görselleþtirilecek Bölüm")]
+    [Header("Visualizer")]
     public LevelData levelDataToPreview;
 
-    [Header("Ayarlar")]
+    [Header("Settings")]
     public float cellSize = 1f;
     public Vector3 gridOrigin = Vector3.zero;
 
