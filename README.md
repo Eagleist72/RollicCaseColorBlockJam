@@ -7,10 +7,6 @@
     <strong>▶ Watch Gameplay Demo</strong>
   </a>
 </p>
-
-
-<video src="https://github.com/Eagleist72/RollicCaseColorBlockJam/blob/main/gameplay-demo.mp4" controls width="100%"></video>
-
 Bu projede, mobil bulmaca mekaniklerini olabildiğince temiz ve geliştirilmeye açık bir kod yapısıyla birleştirmeye çalıştım. Gereksiz karmaşadan kaçınarak, sistemlerin birbiriyle uyumlu çalışması için **State Machine** ve **Singleton Pattern** yaklaşımlarını kullandım.
 
 ## Merkezi Manager Sistemleri
