@@ -7,6 +7,7 @@
     <strong>▶ Watch Gameplay Demo</strong>
   </a>
 </p>
+
 Bu projede, mobil bulmaca mekaniklerini olabildiğince temiz ve geliştirilmeye açık bir kod yapısıyla birleştirmeye çalıştım. Gereksiz karmaşadan kaçınarak, sistemlerin birbiriyle uyumlu çalışması için **State Machine** ve **Singleton Pattern** yaklaşımlarını kullandım.
 
 ## Merkezi Manager Sistemleri
