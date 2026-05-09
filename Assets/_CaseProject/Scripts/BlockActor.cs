@@ -17,10 +17,21 @@ public class BlockActor : MonoBehaviour
     [Tooltip("A basic 1x1 cube prefab containing only a MeshRenderer, with NO Colliders.")]
     [SerializeField] private GameObject unitVisualPrefab;
     [SerializeField] private Transform visualParent;
-    [Tooltip("Assign color materials in the exact order of the BlockColorType enum (e.g., 0-Red, 1-Blue, 2-Green, etc.).")]
+    [Tooltip("Assign color materials in the exact order of the BlockColorType enum.")]
     [SerializeField] private Material[] colorMaterials;
 
+    [Header("Outline Settings")]
+    [SerializeField] private Color outlineColor = Color.white;
+    [Range(1f, 10f)][SerializeField] private float outlineWidth = 4f;
+    [SerializeField] private Outline.Mode outlineMode = Outline.Mode.OutlineAll;
+
     private List<GameObject> _visualUnits = new List<GameObject>();
+    private List<Outline> _outlineComponents = new List<Outline>();
+
+    private void OnDisable()
+    {
+        DisableOutline();
+    }
 
     public void Initialize(BlockSpawnData data, Vector3 worldPos, float gridCellOffset)
     {
@@ -39,6 +50,7 @@ public class BlockActor : MonoBehaviour
             if (unit != null) Destroy(unit);
         }
         _visualUnits.Clear();
+        _outlineComponents.Clear();
 
         Material targetMat = GetMaterialForColor(ColorType);
         List<Vector2Int> offsets = BlockShapeDatabase.GetShapeOffsets(ShapeType);
@@ -46,15 +58,21 @@ public class BlockActor : MonoBehaviour
         foreach (Vector2Int offset in offsets)
         {
             GameObject visualUnit = Instantiate(unitVisualPrefab, visualParent);
-
             visualUnit.transform.localPosition = new Vector3(offset.x * cellOffset, 0f, offset.y * cellOffset);
 
             MeshRenderer rend = visualUnit.GetComponent<MeshRenderer>();
             if (rend != null && targetMat != null)
             {
-                rend.material = targetMat;
+                rend.sharedMaterial = targetMat;
             }
 
+            Outline unitOutline = visualUnit.AddComponent<Outline>();
+            unitOutline.OutlineMode = outlineMode;
+            unitOutline.OutlineColor = outlineColor;
+            unitOutline.OutlineWidth = outlineWidth;
+            unitOutline.enabled = false;
+
+            _outlineComponents.Add(unitOutline);
             _visualUnits.Add(visualUnit);
         }
     }
@@ -85,5 +103,22 @@ public class BlockActor : MonoBehaviour
             positions.Add(RootGridPosition + offset);
         }
         return positions;
+    }
+
+
+    public void EnableOutline()
+    {
+        foreach (var outline in _outlineComponents)
+        {
+            if (outline != null) outline.enabled = true;
+        }
+    }
+
+    public void DisableOutline()
+    {
+        foreach (var outline in _outlineComponents)
+        {
+            if (outline != null) outline.enabled = false;
+        }
     }
 }

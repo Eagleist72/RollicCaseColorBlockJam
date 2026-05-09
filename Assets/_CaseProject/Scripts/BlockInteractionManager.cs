@@ -61,6 +61,9 @@ public class BlockInteractionManager : MonoBehaviour
                 GameManager.Instance.StartTimer();
                 _selectedBlock = cell.OccupyingBlock;
                 _dragOffset = _selectedBlock.transform.position - hitPoint;
+
+                // OUTLINE AÇILIYOR: Bloða dokunduðumuz ve seçtiðimiz an
+                _selectedBlock.EnableOutline();
             }
         }
     }
@@ -79,6 +82,8 @@ public class BlockInteractionManager : MonoBehaviour
 
             if (!isStillActive)
             {
+                // Eðer blok sürüklenirken çýkýþa gidip yok olduysa/havuza döndüyse
+                // (OnDisable zaten outline'ý kapattýðý için burada ekstra bir þey yapmamýza gerek yok)
                 _selectedBlock = null;
             }
         }
@@ -88,6 +93,9 @@ public class BlockInteractionManager : MonoBehaviour
     {
         if (_selectedBlock != null)
         {
+            // OUTLINE KAPANIYOR: Parmaðýmýzý ekrandan çektiðimiz ve sürüklemeyi býraktýðýmýz an
+            _selectedBlock.DisableOutline();
+
             blockManager.EndDragBlock(_selectedBlock);
             _selectedBlock = null;
         }

@@ -1399,7 +1399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelDataToPreview: {fileID: 11400000, guid: 423edff7a079e764187623b011e3720c, type: 2}
   cellSize: 3
-  gridOrigin: {x: 0, y: 0, z: 0}
+  gridOrigin: {x: 10, y: 0, z: 0}
 --- !u!4 &806014557
 Transform:
   m_ObjectHideFlags: 0

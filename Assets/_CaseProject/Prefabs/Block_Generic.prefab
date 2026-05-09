@@ -128,8 +128,9 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 981ba31d861a34e41a451bdb902b59da, type: 2}
   - {fileID: 2100000, guid: 6931d0d6f053cd94693347c89e6fc8b8, type: 2}
   - {fileID: 2100000, guid: c493429bdc285e048a5e2f49403b6a55, type: 2}
-  outlineComponent: {fileID: 2070453798130833627, guid: cc07ea341cc43a14abc1134cf673d082,
-    type: 3}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 1
+  outlineMode: 0
 --- !u!1 &7469632904902504789
 GameObject:
   m_ObjectHideFlags: 0
