@@ -14,11 +14,10 @@ public class BlockActor : MonoBehaviour
     public Vector2Int RootGridPosition { get; private set; }
 
     [Header("Visual Engine")]
-    [Tooltip("A basic 1x1 cube prefab containing only a MeshRenderer, with NO Colliders.")]
     [SerializeField] private GameObject unitVisualPrefab;
     [SerializeField] private Transform visualParent;
-    [Tooltip("Assign color materials in the exact order of the BlockColorType enum.")]
     [SerializeField] private Material[] colorMaterials;
+    [SerializeField] private float blockYOffset = 0.5f;
 
     [Header("Outline Settings")]
     [SerializeField] private Color outlineColor = Color.white;
@@ -58,7 +57,7 @@ public class BlockActor : MonoBehaviour
         foreach (Vector2Int offset in offsets)
         {
             GameObject visualUnit = Instantiate(unitVisualPrefab, visualParent);
-            visualUnit.transform.localPosition = new Vector3(offset.x * cellOffset, 0f, offset.y * cellOffset);
+            visualUnit.transform.localPosition = new Vector3(offset.x * cellOffset, blockYOffset, offset.y * cellOffset);
 
             MeshRenderer rend = visualUnit.GetComponent<MeshRenderer>();
             if (rend != null && targetMat != null)

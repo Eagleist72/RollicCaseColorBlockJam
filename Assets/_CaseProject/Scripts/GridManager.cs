@@ -141,40 +141,37 @@ public class GridManager : MonoBehaviour
             y * (cellSize + cellSpacing)
         );
     }
+
     private void FrameCamera(Vector2Int gridSize)
     {
         Camera cam = Camera.main;
         if (cam == null) return;
 
-        float cameraAngleX = 57f;
+        if (cam.orthographic)
+        {
+            cam.orthographic = false;
+        }
+
+        float cameraAngleX = 60f;
         cam.transform.rotation = Quaternion.Euler(cameraAngleX, 0f, 0f);
 
-
-        cam.transform.position = new Vector3(0f, 20f, -15f);
-
-        if (!cam.orthographic)
-        {
-            cam.orthographic = true;
-        }
-
         float gridWidth = (gridSize.x * cellSize) + ((gridSize.x - 1) * cellSpacing);
+        float gridHeight = (gridSize.y * cellSize) + ((gridSize.y - 1) * cellSpacing);
 
-        float apparentDepth = (gridSize.y * cellSize) * Mathf.Sin(cameraAngleX * Mathf.Deg2Rad);
+        Vector3 centerPoint = Vector3.zero;
 
-        float screenRatio = (float)Screen.width / (float)Screen.height;
-        float targetRatio = gridWidth / apparentDepth;
+        float fov = cam.fieldOfView;
+        float aspect = cam.aspect;
+        float padding = 1.5f;
 
-        float verticalPadding = 1.25f;
+        float distanceForHeight = (gridHeight * 0.5f + padding) / Mathf.Tan(fov * 0.5f * Mathf.Deg2Rad);
+        float distanceForWidth = (gridWidth * 0.5f + padding) / Mathf.Tan(fov * 0.5f * Mathf.Deg2Rad * aspect);
 
-        if (screenRatio >= targetRatio)
-        {
-            cam.orthographicSize = (apparentDepth / 2f) + verticalPadding;
-        }
-        else
-        {
-            float differenceInSize = targetRatio / screenRatio;
-            cam.orthographicSize = ((apparentDepth / 2f) + verticalPadding) * differenceInSize;
-        }
+        float requiredDistance = Mathf.Max(distanceForHeight, distanceForWidth);
+
+        Vector3 backwardDirection = -cam.transform.forward;
+
+        cam.transform.position = centerPoint + (backwardDirection * requiredDistance);
     }
 
     private Vector3 CalculateGridStartOffset(Vector2Int size)
